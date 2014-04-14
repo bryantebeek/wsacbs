@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# <group-number>_web_service_1.tar
+git archive master 1.1 --format=tar -o 10_web_service_1.tar
+tar -tf 10_web_service_1.tar
+
+# <group-number>_web_service_1.2.tar
+git archive master 1.2 --format=tar -o 10_web_service_2.tar
+tar -tf 10_web_service_1.2.tar
