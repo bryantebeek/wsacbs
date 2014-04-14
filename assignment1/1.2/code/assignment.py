@@ -3,12 +3,12 @@ import string, operator
 
 ARITHMETIC_OPERATORS = {
     '+':  operator.add, '-':  operator.sub,
-    '*':  operator.mul, '/':  operator.div
+    '*':  operator.mul, ':':  operator.div
 }
 
 def rpn(expression, operators=ARITHMETIC_OPERATORS):
     stack = []
-    for val in expression.split(' '):
+    for val in expression.split('&'):
         if val in operators:
             f = operators[val]
             stack[-2:] = [f(*stack[-2:])]
@@ -26,9 +26,7 @@ app = Flask(__name__)
 @app.route("/calc/<equation>")
 def calc(equation):
     try:
-        equation = equation.replace(' ', '+').replace('&', ' ').replace(':', '/')
-
-        return str(rpn(equation))
+        return str(rpn(equation.replace(' ', '+')))
     except ZeroDivisionError:
         return "division by zero", 400
     except:
