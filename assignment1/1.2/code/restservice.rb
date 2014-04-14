@@ -85,7 +85,9 @@ end
 
 get '/calc2/' do
    array = keyvalues.keys
-   array.to_s
+   returnstring = ""
+   array.each { |key| returnstring += "#{key}," }
+   returnstring
 end
 
 class RPNCalculator
