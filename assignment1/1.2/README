@@ -1,0 +1,13 @@
+## REST calculator service ##
+The ruby server script requires Sinatra to run:
+gem install sinatra
+
+Then you can run the server with
+ruby restservice.rb
+
+The test clients can be run with
+--calc--
+ruby client.rb --url http://localhost:4567/calc/ --notation rpn
+
+--calc2--
+ruby client-state.rb --url http://localhost:4567/calc2/ --notation rpn
