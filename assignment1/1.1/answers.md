@@ -1,0 +1,2 @@
+# Question 3
+Making the calculator stateful means that the server should keep track of what the client has already calculated before and perform further calculations with the results of these calculations. This could be achieved by giving each client an identifier and a state variable (current calculation result) and store this. When a client performs a request, it sends its ID when requesting a calculation with just one variable, eg. add(1) to add 1 to its current variable.
