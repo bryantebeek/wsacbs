@@ -34,16 +34,5 @@ def calc(equation):
     except:
         return "syntax error", 400
 
-@app.route("/calc2/<equation>")
-def calc(equation):
-    try:
-        equation = equation.replace(' ', '+').replace('&', ' ').replace(':', '/')
-
-        return str(rpn(equation))
-    except ZeroDivisionError:
-        return "division by zero", 400
-    except:
-        return "syntax error", 400
-
 if __name__ == "__main__":
     app.run(debug=True)
