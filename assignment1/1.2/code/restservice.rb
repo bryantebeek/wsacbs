@@ -80,7 +80,12 @@ end
 
 get '/calc2/:id' do
     id = params[:id]
-    keyvalues[id].to_s
+    value = keyvalues[id]
+    if (value != nil)
+        value.to_s
+    else
+        status 404
+    end
 end
 
 get '/calc2/' do
