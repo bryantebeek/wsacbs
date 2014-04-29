@@ -1,0 +1,7 @@
+#!/bin/bash
+
+git archive master 2.1 --format=tar -o 10_VM_context_2_1.tar
+tar -tf 10_VM_context_2_1.tar
+
+git archive master 2.2 --format=tar -o 10_VM_context_2_2.tar
+tar -tf 10_VM_context_2_2.tar
