@@ -1,0 +1,29 @@
+NAME   = restservice
+CPU    = 0.1
+MEMORY = 256
+DISK   = [
+        IMAGE_ID = 251
+]
+
+NIC    = [ NETWORK_ID = 2 ]
+
+FEATURES=[ acpi="no" ]
+
+OS     = [
+  arch = x86_64
+]
+
+GRAPHICS = [
+  TYPE    = "vnc",
+  LISTEN  = "0.0.0.0"
+]
+
+CONTEXT=[
+  HOSTNAME = "$NAME-$VMID",
+  ETH0_IP = "$NIC[IP, NETWORK=\"VM-network\"]",
+  ETH0_NETWORK = "$NETWORK[NETWORK_ADDRESS, NETWORK=\"VM-network\"]",
+  ETH0_MASK = "$NETWORK[NETMASK, NETWORK=\"VM-network\"]",
+  ETH0_GATEWAY = "$NETWORK[GATEWAY, NETWORK=\"VM-network\"]",
+  ETH0_DNS = "$NETWORK[DNS, NETWORK=\"VM-network\"]",
+  SSH_PUBLIC_KEY = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA92ihCDLdHBP/K80IsmaOCTge69p0Dwgf6PluToLGa/NUjvrirWGfXjXfmeuvnN9GovtQQ+2K8zw5jFkFdw582kGCAF1eC4Ak54tkZ7cySmbI3TdIQVy9JK+0UOrnRQAaHefKRYqoxeZYrM0LI4jaXCeeaK/J8kGVmE15VHivFUo/cZvQDoK4lfnkgdmCvQkcg98o4pLOaZCoISvefFEKlA3SJV/3oa9veTFs3YZ4PzeahQPnPQmt3/D2OE8n7NZoVRX6PDiV/J6OgyYsvQEkSaykfnC4da+P2XwVE4gmjZMg1fOwnClZofSqYWZB3YD/RqIcRrkOCyoeYwfMd0Gk3Q== soa10@fs2"
+]
