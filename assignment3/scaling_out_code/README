@@ -1,0 +1,2 @@
+Install the dependencies for the autodeploy script by running "pip install -r requirements.txt"
+Then run the script by running "python autodeploy.py"
