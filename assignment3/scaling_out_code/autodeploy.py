@@ -7,11 +7,15 @@ import time
 
 
 MIN_TWEET_PROCESSING_RATE = 15000 / (2 * 60 * 60)
-CHECKING_PERIOD = 60 * 10  # 10 minutes
+CHECKING_PERIOD = 10 * 60  # 15 minutes
 MAX_RUNNING_AMAZON_VMS = 3
 AWS_ACCESS_KEY_ID = 'AKIAIEIZ4QKG36OL7XTQ'
 AWS_SECRET_ACCESS_KEY = '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'
 DRY_RUN = True
+
+FILTER_AMI_ID = 'ami-df7ebfa8'
+KEY_NAME = 'Group10'
+INSTANCE_TYPE = 't1.micro'
 
 conn = boto.ec2.connect_to_region(
     "eu-west-1",
@@ -21,9 +25,9 @@ conn = boto.ec2.connect_to_region(
 
 def start_new_filter_VM():
     newinstance = conn.run_instances(
-        image_id='ami-df7ebfa8',
-        instance_type='t1.micro',
-        key_name='Group10',
+        image_id=FILTER_AMI_ID,
+        instance_type=INSTANCE_TYPE,
+        key_name=KEY_NAME,
         dry_run=DRY_RUN)
     return newinstance
 
@@ -84,9 +88,7 @@ while True:
     rates = get_rabbitMQ_rates()
     print_info(rates)
     rate_array.append(rates["totalRate"])
-    print ["%0.2f" % i for i in rate_array]
-    # Check every 10 minutes if minimum filter rate is satisfied by all filter
-    # VMs
+
     if time.time() - st > CHECKING_PERIOD:
         average_rate = sum(rate_array) / len(rate_array)
         if average_rate < MIN_TWEET_PROCESSING_RATE and len(reservations) < MAX_RUNNING_AMAZON_VMS:
